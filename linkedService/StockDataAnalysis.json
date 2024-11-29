@@ -1,0 +1,12 @@
+{
+	"name": "StockDataAnalysis",
+	"properties": {
+		"annotations": [],
+		"type": "HttpServer",
+		"typeProperties": {
+			"url": "https://raw.githubusercontent.com/anjaneney/IST615-Project/refs/heads/main/all_stocks_5yr.csv",
+			"enableServerCertificateValidation": true,
+			"authenticationType": "Anonymous"
+		}
+	}
+}
