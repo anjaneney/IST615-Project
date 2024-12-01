@@ -1,0 +1,24 @@
+{
+	"$schema": "https://schema.management.azure.com/schemas/2015-01-01/deploymentParameters.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"value": "stockdatanalysis"
+		},
+		"AzureDataLakeStorage1LinkedService_accountKey": {
+			"value": ""
+		},
+		"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
+			"value": "https://stockdatanalysis.dfs.core.windows.net/"
+		},
+		"StockDataAnalysis_properties_typeProperties_url": {
+			"value": "https://raw.githubusercontent.com/anjaneney/IST615-Project/refs/heads/main/all_stocks_5yr.csv"
+		},
+		"containerUri": {
+			"value": ""
+		},
+		"containerSasToken": {
+			"value": ""
+		}
+	}
+}

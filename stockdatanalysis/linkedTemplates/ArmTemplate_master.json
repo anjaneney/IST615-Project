@@ -1,0 +1,63 @@
+{
+	"$schema": "http://schema.management.azure.com/schemas/2015-01-01/deploymentTemplate.json#",
+	"contentVersion": "1.0.0.0",
+	"parameters": {
+		"factoryName": {
+			"type": "string",
+			"metadata": "Data Factory name",
+			"defaultValue": "stockdatanalysis"
+		},
+		"AzureDataLakeStorage1LinkedService_accountKey": {
+			"type": "secureString",
+			"metadata": "Secure string for 'accountKey' of 'AzureDataLakeStorage1LinkedService'"
+		},
+		"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://stockdatanalysis.dfs.core.windows.net/"
+		},
+		"StockDataAnalysis_properties_typeProperties_url": {
+			"type": "string",
+			"defaultValue": "https://raw.githubusercontent.com/anjaneney/IST615-Project/refs/heads/main/all_stocks_5yr.csv"
+		},
+		"containerUri": {
+			"type": "string",
+			"metadata": "URI to storage account containing linked ARM templates"
+		},
+		"containerSasToken": {
+			"type": "string",
+			"metadata": "Sas token to storage account containing linked ARM templates"
+		}
+	},
+	"variables": {
+		"factoryId": "[concat('Microsoft.DataFactory/factories/', parameters('factoryName'))]"
+	},
+	"resources": [
+		{
+			"name": "stockdatanalysis_ArmTemplate_0",
+			"type": "Microsoft.Resources/deployments",
+			"apiVersion": "2024-03-01",
+			"properties": {
+				"mode": "incremental",
+				"templateLink": {
+					"uri": "[concat(parameters('containerUri'), '/ArmTemplate_0.json', parameters('containerSasToken'))]",
+					"contentVersion": "1.0.0.0"
+				},
+				"parameters": {
+					"factoryName": {
+						"value": "[parameters('factoryName')]"
+					},
+					"AzureDataLakeStorage1LinkedService_accountKey": {
+						"value": "[parameters('AzureDataLakeStorage1LinkedService_accountKey')]"
+					},
+					"AzureDataLakeStorage1LinkedService_properties_typeProperties_url": {
+						"value": "[parameters('AzureDataLakeStorage1LinkedService_properties_typeProperties_url')]"
+					},
+					"StockDataAnalysis_properties_typeProperties_url": {
+						"value": "[parameters('StockDataAnalysis_properties_typeProperties_url')]"
+					}
+				}
+			},
+			"dependsOn": []
+		}
+	]
+}
